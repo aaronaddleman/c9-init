@@ -7,6 +7,10 @@ grep -q -e "export PATH=\"\$PYENV_ROOT" $HOME/.bash_profile
 grep -q "command -v pyenv" $HOME/.bash_profile
 [ $? = 0 ] && echo "yes we are testing for pyenv" || $ echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.bash_profile
 
+# tfenv
+[ -d $HOME/.tfenv ] || git clone https://github.com/tfutils/tfenv.git $HOME/.tfenv
+grep -q -e "export PATH=\"\$HOME/.tfenv/bin:\$PATH" $HOME/.bash_profile
+[ $? = 0 ] && echo "yes we have tfenv in path" || echo 'export PATH="$HOME/.tfenv/bin:$PATH"' >> ~/.bash_profile
 
 # load the file
 source ~/.bash_profile
